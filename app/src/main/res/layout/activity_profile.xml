@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- ===== Header ===== -->
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-16dp"
+        android:background="@drawable/bg_header_gradient"
+        android:elevation="4dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="28dp">
+
+        <TextView
+            android:id="@+id/tvProfileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Profil Saya"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Kelola informasi akun Anda"
+            android:textColor="#DCF3DD"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="28dp">
+
+            <!-- Profile card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/bg_card"
+                android:padding="24dp"
+                android:elevation="6dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="118dp"
+                    android:layout_height="118dp"
+                    android:padding="5dp"
+                    android:background="@drawable/circle_bg"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Foto Profil" />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Nama Pemilik Akun"
+                    style="@style/TextTitle" />
+
+                <TextView
+                    android:id="@+id/profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="example@gmail.com"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextCaption" />
+            </LinearLayout>
+
+            <!-- Account info -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="4dp"
+                android:text="INFORMASI AKUN"
+                style="@style/TextLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/profile_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:drawableStart="@drawable/ic_tag"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextSubtitle"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="14dp"
+                    android:background="@color/stroke_light" />
+
+                <TextView
+                    android:id="@+id/profile_created_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created: 2025-10-29"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextSubtitle"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Actions -->
+            <Button
+                android:id="@+id/btnEditProfile"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:paddingHorizontal="20dp"
+                android:text="Edit Akun"
+                android:drawableStart="@drawable/ic_edit"
+                android:drawableTint="@color/white"
+                style="@style/ButtonPrimary" />
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="20dp"
+                android:text="Logout"
+                android:textColor="@color/status_danger"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawableTint="@color/status_danger"
+                style="@style/ButtonOutline" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

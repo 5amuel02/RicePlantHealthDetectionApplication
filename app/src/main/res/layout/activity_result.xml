@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ResultActivity">
+
+    <!-- ===== Header ===== -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_header_gradient"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="44dp"
+        android:paddingBottom="20dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_result"
+            android:contentDescription="Result"
+            android:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hasil Deteksi"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ringkasan pemindaian kesehatan padi"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#DCF3DD"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="76dp"
+            android:layout_height="34dp"
+            android:src="@drawable/logo_ra_atap"
+            android:contentDescription="RA-ATAP"
+            android:scaleType="fitEnd" />
+    </LinearLayout>
+
+    <!-- ===== Content ===== -->
+    <ScrollView
+        android:id="@+id/resultScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:layout_above="@id/bottom_nav"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layoutAnimation="@anim/layout_animation_rise"
+            tools:layoutAnimation="@null"
+            android:paddingBottom="24dp">
+
+            <!-- Fetch card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUMBER DATA"
+                    style="@style/TextLabel" />
+
+                <TextView
+                    android:id="@+id/tvResultServerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Server belum diatur"
+                    android:drawableStart="@drawable/ic_wifi"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextSubtitle"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btnResultSettings"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:text="Atur Server"
+                        android:maxLines="1"
+                        style="@style/ButtonOutline" />
+
+                    <Button
+                        android:id="@+id/btnAmbilData"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:text="Ambil Data"
+                        style="@style/ButtonPrimary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Section header (titleText must stay a direct sibling of resultContainer) -->
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="6dp"
+                android:text="Hasil Pengamatan"
+                android:drawableStart="@drawable/ic_leaf"
+                android:drawableTint="@color/green_primary"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                style="@style/TextTitle" />
+
+            <!-- Container hasil terinfeksi (diisi runtime) -->
+            <LinearLayout
+                android:id="@+id/resultContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="6dp"
+                android:visibility="gone" />
+
+            <!-- Kartu tanaman sehat -->
+            <LinearLayout
+                android:id="@+id/cleanContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_soft"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanaman Sehat"
+                    android:drawableStart="@drawable/ic_check_circle"
+                    android:drawableTint="@color/status_success"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/text_on_soft"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20 Oktober 2025"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextBody"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blok A – Lahan 3 (-6.974, 107.630)"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextBody"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daun tampak hijau segar tanpa gejala penyakit."
+                    android:drawableStart="@drawable/ic_leaf"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextBody" />
+            </LinearLayout>
+
+            <!-- Raw JSON / log console -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="8dp"
+                android:text="LOG SERVER"
+                style="@style/TextLabel" />
+
+            <TextView
+                android:id="@+id/tvJsonRaw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stream_frame"
+                android:padding="16dp"
+                android:text="Menunggu data dari Flask..."
+                android:textSize="11sp"
+                android:textColor="#9BE6A6"
+                android:fontFamily="@font/montserrat_regular"
+                android:elevation="2dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== Bottom Navigation ===== -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bawah"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:elevation="16dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/menuHome"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_home"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Home"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_camera"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_camera"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Camera"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/menuResult"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_nav_active"
+                android:src="@drawable/ic_result"
+                android:tint="@color/green_primary"
+                android:padding="12dp"
+                android:contentDescription="Result"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/menuAdvance"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_setting"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Settings"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/menuProfile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_user"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Profile"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>

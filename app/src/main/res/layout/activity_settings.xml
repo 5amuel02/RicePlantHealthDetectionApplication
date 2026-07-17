@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".SettingsActivity">
+
+    <!-- ===== Header ===== -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_header_gradient"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="44dp"
+        android:paddingBottom="20dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_setting"
+            android:contentDescription="Pengaturan"
+            android:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pengaturan"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atur koneksi server drone/Flask"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#DCF3DD"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="76dp"
+            android:layout_height="34dp"
+            android:src="@drawable/logo_ra_atap"
+            android:contentDescription="RA-ATAP"
+            android:scaleType="fitEnd" />
+    </LinearLayout>
+
+    <!-- ===== Content ===== -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:layout_above="@id/bottom_nav"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layoutAnimation="@anim/layout_animation_rise"
+            tools:layoutAnimation="@null"
+            android:paddingBottom="24dp">
+
+            <!-- ===== Server card ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SERVER DRONE / FLASK"
+                    style="@style/TextLabel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Alamat ini dipakai untuk stream, kirim foto, dan ambil hasil deteksi."
+                    style="@style/TextCaption" />
+
+                <!-- IP -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Alamat IP"
+                    style="@style/TextCaption" />
+
+                <EditText
+                    android:id="@+id/inputServerIp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="mis. 192.168.1.5"
+                    android:inputType="text"
+                    android:drawableStart="@drawable/ic_wifi"
+                    android:drawableTint="@color/green_primary"
+                    android:autofillHints="host"
+                    style="@style/InputField" />
+
+                <!-- Port -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Port"
+                    style="@style/TextCaption" />
+
+                <EditText
+                    android:id="@+id/inputServerPort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="5000"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:drawableStart="@drawable/ic_globe"
+                    android:drawableTint="@color/green_primary"
+                    style="@style/InputField" />
+
+                <!-- Test connection -->
+                <Button
+                    android:id="@+id/btnTestConnection"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:text="Tes Koneksi"
+                    android:drawableStart="@drawable/ic_refresh"
+                    android:drawableTint="@color/green_primary"
+                    style="@style/ButtonOutline" />
+
+                <!-- Status pill -->
+                <TextView
+                    android:id="@+id/tvConnStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_pill"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="7dp"
+                    android:text="Belum diuji"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="@color/text_on_soft"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- ===== Preferences ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="4dp"
+                android:text="PREFERENSI"
+                style="@style/TextLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <!-- Row: sambungkan otomatis -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_wifi"
+                        android:contentDescription="Auto connect"
+                        android:tint="@color/green_primary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sambungkan stream otomatis"
+                            style="@style/TextSubtitle"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Muat live view saat membuka Home"
+                            style="@style/TextCaption" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchAutoConnect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="14dp"
+                    android:background="@color/stroke_light" />
+
+                <!-- Row: mode gelap -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_setting"
+                        android:contentDescription="Mode gelap"
+                        android:tint="@color/green_primary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mode gelap"
+                            style="@style/TextSubtitle"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tampilan gelap, lebih nyaman di mata"
+                            style="@style/TextCaption" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchDarkMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ===== Log waktu respons ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="4dp"
+                android:text="LOG WAKTU RESPONS"
+                style="@style/TextLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/tvLogSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belum ada data waktu respons"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextBody" />
+
+                <Button
+                    android:id="@+id/btnClearLog"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="14dp"
+                    android:text="Hapus Log"
+                    android:textColor="@color/status_danger"
+                    android:drawableStart="@drawable/ic_warning"
+                    android:drawableTint="@color/status_danger"
+                    style="@style/ButtonOutline" />
+            </LinearLayout>
+
+            <!-- ===== Tentang ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="4dp"
+                android:text="TENTANG"
+                style="@style/TextLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RA-ATAP"
+                    android:drawableStart="@drawable/ic_leaf"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextSubtitle" />
+
+                <TextView
+                    android:id="@+id/tvVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Versi -"
+                    style="@style/TextCaption" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Aplikasi monitoring kesehatan tanaman padi lewat kamera drone."
+                    style="@style/TextBody" />
+            </LinearLayout>
+
+            <!-- Save -->
+            <Button
+                android:id="@+id/btnSaveSettings"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:text="Simpan Pengaturan"
+                android:drawableStart="@drawable/ic_check_circle"
+                android:drawableTint="@color/white"
+                style="@style/ButtonPrimary" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== Bottom Navigation ===== -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bawah"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:elevation="16dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_home"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_home"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Home"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_camera"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_camera"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Camera"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_result"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_result"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Result"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_settings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_nav_active"
+                android:src="@drawable/ic_setting"
+                android:tint="@color/green_primary"
+                android:padding="12dp"
+                android:contentDescription="Settings"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_profile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_user"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Profile"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>

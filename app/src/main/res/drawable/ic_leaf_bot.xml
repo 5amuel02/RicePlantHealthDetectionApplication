@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Maskot robot-daun RA-ATAP: badan daun, mata robot, antena, dan tangan melambai. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Badan daun -->
+    <path
+        android:pathData="M32,8 C20,16 16,34 32,56 C48,34 44,16 32,8 Z"
+        android:fillColor="#43A047" />
+
+    <!-- Tulang daun -->
+    <path
+        android:pathData="M32,13 L32,50"
+        android:strokeColor="#A5D6A7"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round" />
+
+    <!-- Lengan + tangan melambai -->
+    <path
+        android:pathData="M43,34 L50,27"
+        android:strokeColor="#43A047"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M47.8,26 a3.2,3.2 0 1,0 6.4,0 a3.2,3.2 0 1,0 -6.4,0 z"
+        android:fillColor="#43A047" />
+
+    <!-- Antena -->
+    <path
+        android:pathData="M32,8 L32,3"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M30,2 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0 z"
+        android:fillColor="#F2A900" />
+
+    <!-- Mata -->
+    <path
+        android:pathData="M21,30 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M33,30 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M24.8,31 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z"
+        android:fillColor="#1B2A1E" />
+    <path
+        android:pathData="M36.8,31 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z"
+        android:fillColor="#1B2A1E" />
+
+    <!-- Senyum -->
+    <path
+        android:pathData="M27,40 Q32,45 37,40"
+        android:fillColor="#00000000"
+        android:strokeColor="#1B5E20"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+</vector>

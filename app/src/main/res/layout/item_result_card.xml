@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="16dp"
+    android:layout_margin="6dp"
+    android:elevation="3dp">
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pill"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="1"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="13sp"
+        android:textColor="@color/text_on_soft" />
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginVertical="12dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_stream_frame"
+        android:contentDescription="Hasil Deteksi" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawableTint="@color/green_primary"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lokasi"
+        android:drawableStart="@drawable/ic_location"
+        android:drawableTint="@color/green_primary"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvVariety"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Varietas"
+        android:drawableStart="@drawable/ic_grain"
+        android:drawableTint="@color/green_primary"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:drawableStart="@drawable/ic_check_circle"
+        android:drawableTint="@color/status_success"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvDisease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jenis Penyakit"
+        android:drawableStart="@drawable/ic_alert"
+        android:drawableTint="@color/status_danger"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvAccuracy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tingkat Akurasi"
+        android:drawableStart="@drawable/ic_target"
+        android:drawableTint="@color/green_primary"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvAffectedPart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bagian Terkena"
+        android:drawableStart="@drawable/ic_leaf"
+        android:drawableTint="@color/green_primary"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        style="@style/TextBody" />
+</LinearLayout>

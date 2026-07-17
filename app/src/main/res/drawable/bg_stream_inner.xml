@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Latar hitam untuk WebView stream. Radius = radius frame (20dp) - padding (5dp)
+     agar sudutnya menyatu dengan bg_stream_frame dan tidak ada kotak hitam menyembul. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#000000" />
+    <corners android:radius="15dp" />
+</shape>

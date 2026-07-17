@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Override warna untuk MODE GELAP. Hanya token netral/permukaan yang diubah;
+  aksen hijau & warna status (success/danger/warning) tetap karena sudah kontras
+  di latar gelap. Semua drawable & theme memakai token ini, jadi cukup di sini.
+-->
+<resources>
+    <!-- Backgrounds & surface -->
+    <color name="background">#0F140F</color>
+    <color name="surface">#1A211A</color>
+    <color name="surface_alt">#232D23</color>
+
+    <!-- Text -->
+    <color name="text_primary">#EAF2E8</color>
+    <color name="text_secondary">#B4C1B3</color>
+    <color name="text_muted">#869485</color>
+    <color name="text_on_soft">#A5D6A7</color>
+
+    <!-- Lines -->
+    <color name="stroke_light">#2C382C</color>
+    <color name="stroke_green">#3C563E</color>
+
+    <!-- Soft green surfaces (pill, kartu sehat) -->
+    <color name="green_pale">#22331F</color>
+    <color name="green_mist">#1B241A</color>
+
+    <!-- Soft status tints -->
+    <color name="danger_soft">#3A2020</color>
+    <color name="success_soft">#1E3220</color>
+    <color name="accent_amber_soft">#3A2E12</color>
+</resources>

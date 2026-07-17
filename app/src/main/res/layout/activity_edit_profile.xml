@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- ===== Header ===== -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_header_gradient"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="24dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/tvEditProfileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profil"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="28dp">
+
+            <!-- Avatar -->
+            <ImageView
+                android:id="@+id/imgProfilePreview"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:background="@drawable/circle_bg"
+                android:scaleType="centerCrop"
+                android:contentDescription="Foto Profil" />
+
+            <Button
+                android:id="@+id/btnChangePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="20dp"
+                android:text="Ubah Foto"
+                android:drawableStart="@drawable/ic_camera"
+                android:drawableTint="@color/green_primary"
+                style="@style/ButtonOutline"
+                android:textSize="14sp" />
+
+            <!-- Form card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    style="@style/TextLabel"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama"
+                    android:inputType="textPersonName"
+                    android:drawableStart="@drawable/ic_user"
+                    android:drawableTint="@color/green_primary"
+                    android:autofillHints="name"
+                    style="@style/InputField"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    style="@style/TextLabel"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawableTint="@color/green_primary"
+                    android:autofillHints="emailAddress"
+                    style="@style/InputField"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    style="@style/TextLabel"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:inputType="text"
+                    android:drawableStart="@drawable/ic_tag"
+                    android:drawableTint="@color/green_primary"
+                    android:autofillHints="username"
+                    style="@style/InputField"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Pembuatan"
+                    style="@style/TextLabel"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etCreatedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tanggal Pembuatan"
+                    android:inputType="text"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawableTint="@color/green_primary"
+                    style="@style/InputField" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:text="Simpan Perubahan"
+                android:drawableStart="@drawable/ic_check_circle"
+                android:drawableTint="@color/white"
+                style="@style/ButtonPrimary" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

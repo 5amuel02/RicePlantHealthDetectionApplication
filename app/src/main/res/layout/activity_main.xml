@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <!-- ===== Header ===== -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_header_gradient"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="44dp"
+        android:paddingBottom="20dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_leaf"
+            android:contentDescription="Logo"
+            android:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Live Monitoring"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pantauan kamera drone secara langsung"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#DCF3DD"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="76dp"
+            android:layout_height="34dp"
+            android:src="@drawable/logo_ra_atap"
+            android:contentDescription="RA-ATAP"
+            android:scaleType="fitEnd" />
+    </LinearLayout>
+
+    <!-- ===== Content ===== -->
+    <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:layout_above="@id/bottom_nav"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layoutAnimation="@anim/layout_animation_rise"
+            tools:layoutAnimation="@null"
+            android:paddingBottom="24dp">
+
+            <!-- Sapaan maskot: panel terminal interaktif (ketuk untuk sapaan lain) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/imgMascot"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_leaf_bot"
+                    android:contentDescription="Maskot RA-ATAP" />
+
+                <LinearLayout
+                    android:id="@+id/terminalCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_terminal"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <!-- Title bar ala jendela terminal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/bg_bar_rounded"
+                            android:backgroundTint="#FF5F56" />
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/bg_bar_rounded"
+                            android:backgroundTint="#FFBD2E" />
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/bg_bar_rounded"
+                            android:backgroundTint="#27C93F" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="ra-atap — monitor"
+                            android:fontFamily="monospace"
+                            android:textColor="#6FA47A"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvTerminal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minLines="2"
+                        android:text="&gt; "
+                        android:fontFamily="monospace"
+                        android:textColor="#9BE6A6"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="ketuk untuk sapaan lain"
+                        android:fontFamily="monospace"
+                        android:textColor="#5E7A63"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Connection card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KONEKSI DRONE"
+                    style="@style/TextLabel" />
+
+                <TextView
+                    android:id="@+id/tvServerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Server belum diatur"
+                    android:drawableStart="@drawable/ic_wifi"
+                    android:drawableTint="@color/green_primary"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    style="@style/TextSubtitle"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btnOpenSettings"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:text="Atur Server"
+                        android:maxLines="1"
+                        style="@style/ButtonOutline" />
+
+                    <Button
+                        android:id="@+id/btnConnectIp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:text="Hubungkan"
+                        style="@style/ButtonPrimary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Stream section title -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_leaf"
+                    android:contentDescription="Live"
+                    android:tint="@color/green_primary" />
+
+                <TextView
+                    android:id="@+id/streamTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Live Camera Monitoring"
+                    style="@style/TextTitle"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <!-- Stream frame -->
+            <LinearLayout
+                android:id="@+id/streamContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stream_frame"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <WebView
+                    android:id="@+id/webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:background="@drawable/bg_stream_inner"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/connectionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_pill"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="7dp"
+                android:text="Status: Belum terhubung"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/text_on_soft"
+                android:textSize="13sp" />
+
+            <!-- Actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/btnRefresh"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="Refresh"
+                    style="@style/ButtonOutline" />
+
+                <Button
+                    android:id="@+id/btnViewResult"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Hasil Deteksi"
+                    style="@style/ButtonPrimary" />
+            </LinearLayout>
+
+            <!-- Dashboard statistik -->
+            <Button
+                android:id="@+id/btnDashboard"
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:text="Dashboard Statistik"
+                android:drawableStart="@drawable/ic_result"
+                android:drawableTint="@color/green_primary"
+                style="@style/ButtonOutline" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== Bottom Navigation ===== -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bawah"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:elevation="16dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_home"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_nav_active"
+                android:src="@drawable/ic_home"
+                android:tint="@color/green_primary"
+                android:padding="12dp"
+                android:contentDescription="Home"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_camera"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_camera"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Camera"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_result"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_result"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Result"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_settings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_setting"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Settings"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/nav_profile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_user"
+                android:tint="@color/text_muted"
+                android:padding="12dp"
+                android:contentDescription="Profile"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>

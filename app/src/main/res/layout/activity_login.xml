@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_header_gradient"
+    android:layoutAnimation="@anim/layout_animation_rise"
+    tools:layoutAnimation="@null"
+    tools:context=".LoginActivity">
+
+    <!-- ===== Header brand (on green) =====
+         Diregangkan antara atas layar dan kartu login lalu di-center, agar
+         teks "RA-ATAP" tidak pernah tertutup sheet login di layar pendek. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/cardContainer"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
+
+        <FrameLayout
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/bg_logo_circle">
+
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_ra_atap"
+                android:contentDescription="RA-ATAP Logo"
+                android:scaleType="fitCenter" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="RA-ATAP"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Smart Rice Field Monitoring"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#DCF3DD"
+            android:textSize="13sp"
+            android:letterSpacing="0.03" />
+    </LinearLayout>
+
+    <!-- ===== Login sheet ===== -->
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_green_card"
+        android:paddingHorizontal="28dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="34dp"
+        android:elevation="12dp"
+        android:layout_alignParentBottom="true"
+        android:outlineProvider="background">
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back"
+            style="@style/TextDisplay"
+            android:textSize="26sp"
+            android:textColor="@color/green_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="22dp"
+            android:text="Masuk untuk memantau kondisi lahan Anda"
+            style="@style/TextBody" />
+
+        <!-- Username -->
+        <EditText
+            android:id="@+id/inputUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="text"
+            android:drawableStart="@drawable/ic_user"
+            android:drawableTint="@color/green_primary"
+            android:autofillHints="username"
+            style="@style/InputField"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawableTint="@color/green_primary"
+            android:autofillHints="password"
+            style="@style/InputField"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtForgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textColor="@color/green_primary"
+            android:textSize="13sp"
+            android:padding="4dp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="18dp" />
+
+        <!-- Sign In -->
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:text="Sign In"
+            style="@style/ButtonPrimary"
+            android:layout_marginBottom="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="atau lanjutkan dengan"
+            style="@style/TextCaption"
+            android:layout_gravity="center"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Social -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_pill"
+                android:padding="15dp"
+                android:src="@drawable/ic_google"
+                android:contentDescription="Google"
+                android:layout_marginEnd="16dp" />
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_pill"
+                android:padding="15dp"
+                android:src="@drawable/ic_facebook"
+                android:contentDescription="Facebook" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

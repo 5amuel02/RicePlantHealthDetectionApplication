@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".CameraActivity">
+
+    <!-- Live camera preview -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Captured photo (review mode) -->
+    <ImageView
+        android:id="@+id/capturedImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:contentDescription="Foto hasil" />
+
+    <!-- Center scanner reticle (capture mode) -->
+    <LinearLayout
+        android:id="@+id/captureGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:layout_width="290dp"
+            android:layout_height="290dp">
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="top|start"
+                android:src="@drawable/ic_scan_corner"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="top|end"
+                android:rotation="90"
+                android:src="@drawable/ic_scan_corner"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="bottom|end"
+                android:rotation="180"
+                android:src="@drawable/ic_scan_corner"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="bottom|start"
+                android:rotation="270"
+                android:src="@drawable/ic_scan_corner"
+                android:contentDescription="@null" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/bg_chip_dark"
+            android:text="Arahkan ke daun / tanaman padi"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- Top scrim -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="top"
+        android:background="@drawable/bg_scrim_top" />
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="42dp"
+        android:paddingHorizontal="16dp">
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_control_circle"
+            android:src="@drawable/ic_close"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:contentDescription="Tutup" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <!-- Mode chip -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_chip_dark"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_leaf"
+                    android:tint="@color/green_light"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Deteksi Padi"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/btnFlash"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_control_circle"
+            android:src="@drawable/ic_flash_off"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:contentDescription="Flash" />
+    </LinearLayout>
+
+    <!-- Bottom capture controls (glass panel) -->
+    <LinearLayout
+        android:id="@+id/captureControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_glass_panel"
+        android:paddingBottom="40dp"
+        android:paddingTop="26dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btnSwitch"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_control_circle"
+                android:src="@drawable/ic_camera_switch"
+                android:padding="13dp"
+                android:scaleType="centerInside"
+                android:contentDescription="Ganti kamera" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btnShutter"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_shutter"
+                android:contentDescription="Ambil foto" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- Bottom review controls (glass panel) -->
+    <LinearLayout
+        android:id="@+id/reviewControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:background="@drawable/bg_glass_panel"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="36dp"
+        android:paddingTop="24dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnRetake"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="Ulangi"
+            android:paddingHorizontal="16dp"
+            android:drawableStart="@drawable/ic_refresh"
+            android:drawableTint="@color/green_primary"
+            style="@style/ButtonOutline" />
+
+        <Button
+            android:id="@+id/btnDetect"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:text="Analisis"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:drawableStart="@drawable/ic_leaf"
+            android:drawableTint="@color/white"
+            style="@style/ButtonPrimary" />
+    </LinearLayout>
+
+    <!-- Loading overlay -->
+    <LinearLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#B3000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvLoadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Memproses…"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</FrameLayout>
