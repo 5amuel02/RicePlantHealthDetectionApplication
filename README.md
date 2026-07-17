@@ -4,6 +4,20 @@ An Android app + Flask backend for rice-leaf photo capture and analysis — buil
 
 > 📱 Android (Kotlin) + 🐍 Python/Flask backend
 
+<p align="center">
+  <a href="https://github.com/5amuel02/RicePlantHealthDetectionApplication/releases/latest">
+    <img src="https://img.shields.io/github/v/release/5amuel02/RicePlantHealthDetectionApplication?label=Download%20APK&style=for-the-badge&color=16A34A" alt="Download latest APK" />
+  </a>
+</p>
+
+## Install
+
+1. Download `RiceHealth-v1.0.0.apk` from **[the latest release](https://github.com/5amuel02/RicePlantHealthDetectionApplication/releases/latest)**
+2. Open it on your Android device (7.0+) and allow installation from this source when prompted
+3. Camera capture and local pre-analysis work immediately; to save results to history, point the app at a running Flask backend from the **Settings** screen (see *Running it yourself* below for the backend)
+
+The APK is signed with a dedicated release key; verify it with `apksigner verify --print-certs RiceHealth-v1.0.0.apk`.
+
 ## Features
 
 - **In-app camera capture** (CameraX) with immediate preview before upload
@@ -43,6 +57,8 @@ flask_server/
 
 ## Running it yourself
 
+Just want to try the app? Grab the [prebuilt APK](https://github.com/5amuel02/RicePlantHealthDetectionApplication/releases/latest) instead — camera capture and pre-analysis work without the backend below (see *Install*).
+
 **Backend:**
 ```bash
 cd flask_server
@@ -52,7 +68,8 @@ python app.py
 
 **App:**
 ```bash
-./gradlew assembleDebug
+./gradlew assembleDebug      # debug APK
+./gradlew assembleRelease    # minified release APK — unsigned unless you provide your own keystore.properties
 ```
 Then set the Flask server's IP and port from the app's Settings screen (blank by default — no server is pre-configured).
 
