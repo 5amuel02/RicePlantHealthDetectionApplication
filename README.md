@@ -1,4 +1,4 @@
-# RA-ATAP (Percobaan1957)
+# Rice Plant Health Detection Application
 
 An Android app + Flask backend for rice-leaf photo capture and analysis — built during an internship project. The app captures a leaf photo via CameraX, uploads it to a local Flask server, and displays a color-based health reading with a running history of past scans.
 
@@ -54,7 +54,7 @@ python app.py
 ```bash
 ./gradlew assembleDebug
 ```
-Then set the Flask server's IP and port from the app's Settings screen (defaults point to a local development network).
+Then set the Flask server's IP and port from the app's Settings screen (blank by default — no server is pre-configured).
 
 ## Status
 
