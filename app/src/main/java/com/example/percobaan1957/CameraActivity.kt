@@ -23,6 +23,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.percobaan1957.analysis.LeafAnalysis
+import com.example.percobaan1957.analysis.LeafHealthAnalyzerTFLite
 import com.example.percobaan1957.analysis.LeafHealthAnalyzerV3
 import okhttp3.Call
 import okhttp3.Callback
@@ -59,6 +60,11 @@ class CameraActivity : AppCompatActivity() {
     private var photoFile: File? = null
 
     private val httpClient = OkHttpClient()
+
+    // Loads model.tflite from assets/ once, lazily, off the main thread's critical path.
+    // isAvailable is false (no crash) until that file is actually bundled — see the
+    // analyzer's kdoc and app/src/main/assets/README.md.
+    private val tfliteAnalyzer by lazy { LeafHealthAnalyzerTFLite(this) }
 
     private val requestCameraPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -203,13 +209,18 @@ class CameraActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 null
             }
-            val result = bitmap?.let { LeafHealthAnalyzerV3.analyze(it) }
+            val usedTFLite = bitmap != null && tfliteAnalyzer.isAvailable
+            val result = when {
+                bitmap == null -> null
+                usedTFLite -> tfliteAnalyzer.analyze(bitmap)
+                else -> LeafHealthAnalyzerV3.analyze(bitmap)
+            }
             runOnUiThread {
                 loadingOverlay.visibility = View.GONE
                 if (result == null) {
                     Toast.makeText(this, "Gagal membaca foto untuk dianalisis", Toast.LENGTH_SHORT).show()
                 } else {
-                    showLocalResult(result)
+                    showLocalResult(result, usedTFLite)
                 }
             }
         }.start()
@@ -226,19 +237,28 @@ class CameraActivity : AppCompatActivity() {
         return BitmapFactory.decodeFile(file.absolutePath, opts)
     }
 
-    private fun showLocalResult(a: LeafAnalysis) {
+    private fun showLocalResult(a: LeafAnalysis, usedTFLite: Boolean) {
         val msg = buildString {
             append("Status: ${a.status.displayName}\n")
             append("Keyakinan: ${a.confidencePercent}%\n")
             if (a.severity.isNotEmpty()) append("Tingkat keparahan: ${a.severity}\n")
             if (a.lesionCount > 0) append("Bercak/lesi terdeteksi: ${a.lesionCount}\n")
-            append("\nKomposisi warna daun:\n")
-            append("• Hijau sehat: ${a.greenPercent}%\n")
-            append("• Menguning: ${a.yellowPercent}%\n")
-            append("• Bercak coklat: ${a.brownPercent}%\n")
-            append("• Cakupan daun: ${a.leafCoverage}%\n\n")
+            if (!usedTFLite) {
+                append("\nKomposisi warna daun:\n")
+                append("• Hijau sehat: ${a.greenPercent}%\n")
+                append("• Menguning: ${a.yellowPercent}%\n")
+                append("• Bercak coklat: ${a.brownPercent}%\n")
+                append("• Cakupan daun: ${a.leafCoverage}%\n")
+            }
+            append("\n")
             append(a.advice)
-            append("\n\n— Analisis lokal V3: mesin pakar warna & bentuk (bukan model AI terlatih)")
+            append(
+                if (usedTFLite) {
+                    "\n\n— Model AI on-device (MobileNetV2, dilatih dari dataset publik CC BY 4.0)"
+                } else {
+                    "\n\n— Analisis lokal V3: mesin pakar warna & bentuk (bukan model AI terlatih)"
+                }
+            )
         }
         val builder = AlertDialog.Builder(this)
             .setTitle(a.label)
@@ -335,5 +355,6 @@ class CameraActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraProvider?.unbindAll()
+        tfliteAnalyzer.close()
     }
 }

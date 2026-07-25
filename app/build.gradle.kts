@@ -59,6 +59,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    // TFLite needs to mmap the model file directly out of the APK, which fails if
+    // AAPT compresses it — keep .tflite assets stored, not compressed.
+    androidResources {
+        noCompress += "tflite"
+    }
 }
 
 dependencies {
@@ -88,6 +94,10 @@ dependencies {
 
     // Library grafik
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
+
+    // 🔹 On-device rice-leaf disease classifier (see analysis/LeafHealthAnalyzerTFLite.kt).
+    // Falls back to the heuristic V3 analyzer if no model.tflite is bundled in assets/.
+    implementation("org.tensorflow:tensorflow-lite:2.16.1")
 
     // 🔹 Testing
     testImplementation(libs.junit)
